@@ -2,7 +2,9 @@ package com.drools.demo;
 import com.drools.demo.po.Person;
 
 rule "temp"
+salience 10001 // 优先级, 降序(_______非必填)
 agenda-group "temp01"
+lock-on-active true // 确保当前规则只匹配一次
 	when
         $p : Person(age > 30);
     then
@@ -10,6 +12,8 @@ agenda-group "temp01"
 end
 
 rule "temp2"
+salience 1 // 优先级, 降序(_______非必填)
+lock-on-active true // 确保当前规则只匹配一次
 	when
         $p : Person(name matches "曹.*");
     then
@@ -17,7 +21,9 @@ rule "temp2"
 end
 
 rule "temp3"
-agenda-group "temp01"
+salience 10000 // 优先级, 降序(_______非必填)
+agenda-group "temp01" // 必须设置焦点才会匹配当前规则kieSession.getAgenda().getAgendaGroup("temp01").setFocus()(_______非必填)
+lock-on-active true // 确保当前规则只匹配一次(_______非必填)
 	when
         $p : Person(age > 30);
     then
@@ -26,6 +32,7 @@ end
 
 rule "temp4"
 agenda-group "temp01"
+lock-on-active true
 	when
         $p : Person(age > 30);
     then
