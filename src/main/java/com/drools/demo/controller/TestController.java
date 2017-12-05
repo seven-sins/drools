@@ -23,6 +23,8 @@ public class TestController {
 		
 		int i = kieSession.fireAllRules();
 		System.out.println(i);
+		// 在规则中修改了age
+		System.out.println(person.getAge());
 		
 		return 1;
 	}
