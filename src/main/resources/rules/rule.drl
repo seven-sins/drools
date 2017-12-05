@@ -1,0 +1,25 @@
+package com.drools.demo;
+import com.drools.demo.po.Person;
+
+rule "temp"
+agenda-group "temp01"
+	when
+        $p : Person(age > 30);
+    then
+		System.out.println($p.getName() + "---" + $p.getAge());
+end
+
+rule "temp2"
+	when
+        $p : Person(name matches "曹.*");
+    then
+		System.out.println("name: " + $p.getName());
+end
+
+rule "temp3"
+agenda-group "temp01"
+	when
+        $p : Person(age > 30);
+    then
+		System.out.println("name: " + $p.getName() + "---age: " + $p.getAge());
+end
